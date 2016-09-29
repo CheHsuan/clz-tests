@@ -18,6 +18,15 @@ int main(int argc, char *argv[])
     }
 #endif
 
+#if defined(BRECURSIVE)
+    for(num = start; num < end; num++){
+        ret = clz_binary_recursive(num, 16);
+#if defined(DEBUG)
+        printf("%u ",ret);
+#endif
+    }
+#endif
+
 #if defined(ITERATION)
     for(num = start; num < end; num++){
         ret = clz_iteration(num);

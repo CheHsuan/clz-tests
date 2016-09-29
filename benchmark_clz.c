@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     struct timespec end = {0, 0};
 
     uint32_t num = 0;
-    uint32_t max = 0XFFFF;
+    uint32_t max = 0XFFFFFFFF;
 
     // clz recursive version
     clock_gettime(CLOCK_ID, &start);
@@ -22,6 +22,16 @@ int main(int argc, char *argv[])
     clock_gettime(CLOCK_ID, &end);
     printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
            (end.tv_nsec - start.tv_nsec)/ONE_SEC);
+
+    // clz binary recursive version
+    clock_gettime(CLOCK_ID, &start);
+    for(num = 0; num < max; num++){
+        clz_binary_recursive(num, 16);
+    }
+    clock_gettime(CLOCK_ID, &end);
+    printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
+           (end.tv_nsec - start.tv_nsec)/ONE_SEC);
+
 
     // clz iteration version
     clock_gettime(CLOCK_ID, &start);

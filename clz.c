@@ -7,6 +7,18 @@ uint8_t clz_recursive(uint32_t x)
     return x ? clz_recursive(x>>1) - 1 : 32;
 }
 
+uint8_t clz_binary_recursive(uint32_t x, int shift)
+{
+    if(x == 0)
+        return 32;
+    if(shift == 0)
+        return 0;
+    if(x <= (0xFFFFFFFF >> shift))
+        return shift + clz_binary_recursive(x << shift, shift / 2);
+    else
+        return clz_binary_recursive(x, shift / 2);
+}
+
 uint8_t clz_iteration(uint32_t x)
 {
     int count = 0;
