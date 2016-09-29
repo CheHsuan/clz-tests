@@ -57,6 +57,15 @@ int main(int argc, char *argv[])
         clz_binarysearch(num);
     }
     clock_gettime(CLOCK_ID, &end);
+    printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
+           (end.tv_nsec - start.tv_nsec)/ONE_SEC);
+
+    // clz harley version
+    clock_gettime(CLOCK_ID, &start);
+    for(num = 0; num < max; num++){
+        clz_harley(num);
+    }
+    clock_gettime(CLOCK_ID, &end);
     printf("%lf\n", (double) (end.tv_sec - start.tv_sec) +
            (end.tv_nsec - start.tv_nsec)/ONE_SEC);
 

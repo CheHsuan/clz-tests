@@ -54,6 +54,15 @@ int main(int argc, char *argv[])
     }
 #endif
 
+#if defined(HARLEY)
+    for(num = start; num < end; num++){
+        ret = clz_harley(num);
+#if defined(DEBUG)
+        printf("%u ",ret);
+#endif
+    }
+#endif
+
 #if defined(DEBUG)
         printf("\n");
 #endif
